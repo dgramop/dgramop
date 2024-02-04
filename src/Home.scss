@@ -1,0 +1,267 @@
+body {
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    overflow-x: clip;
+    font-size: 1.2rem;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+$hero_height: 75vh;
+#bgvid {
+    width: 100vw;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    //margin-top: -10%;
+    //margin-bottom: -10%;
+    height: $hero_height;
+    object-fit: cover;
+    z-index: -5;
+    opacity: 0.35;
+}
+
+
+.vid_container {
+    background-color: black;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    padding: 0;
+    margin: 0;
+/*
+    overflow: hidden;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    position: absolute;*/
+}
+
+$first_indent: 3rem;
+$second_indent: $first_indent;
+
+.hero {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: $hero_height;
+    margin: 0;
+    width: 100vw;
+
+    &__heading {
+        margin: $first_indent;
+        &__name {
+            font-weight:bold;
+        }
+        display: flex;
+        gap: 1ch;
+    }
+
+    &__creed {
+        margin: $first_indent;
+        &__title {
+            font-weight:bold;
+            color: #D4D4D4;
+        }
+
+        &__text {
+            font-size:2rem;
+            color: #A3A3A3;
+        }
+    }
+}
+
+#pinContainer { 
+    height: 100vh;
+    width: 100vw;
+}
+
+$work_inside_padding: calc($first_indent - 3px);
+$standard_border: 3px solid #525252;
+
+.card_title {
+    font-weight: bold;
+}
+
+.work {
+    border: $standard_border;
+    border-radius: 1rem;
+    height: calc(100% - 2 * $work_inside_padding - 6px);
+    padding: $work_inside_padding;
+    background-color: black;
+
+    &__spacer {
+        height: 50vh;
+    }
+
+    
+}
+
+.workitem {
+    border-radius: 1rem;
+    width: 100%;
+    height: 50rem;
+
+    // needed to give gsap a DOM node since react complains if I give it a hook
+    &__container {
+        width: calc(100% - $work_inside_padding*2);
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top:6rem;
+        left: $work_inside_padding;
+    }
+
+    &__header {
+        z-index: 1;
+        position: absolute;
+        top: $second_indent;
+        left: $second_indent;
+        display: flex;
+        justify-content: space-between;
+        width: calc(100% - 2 * $work_inside_padding);
+        align-items: stretch;
+
+        &__infonugget {
+            background-color: #030712;
+            padding: 1rem;
+            border-radius: 1rem;
+            opacity: 0.9;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            &__title {
+                font-size: 1.2rem;
+            }
+            &__subtext {
+                font-size: 0.8rem;
+                font-style: italic;
+            }
+        }
+
+        &__symbol {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #030712;
+            font-size: 2rem;
+            padding: 1rem;
+            padding-left: 1.4rem;
+            padding-right: 1.4rem;
+            opacity: 0.9;
+            border-radius: 1rem;
+        }
+    }
+
+    &__subtext {
+        margin-top: 0;
+        padding-top: 0;
+        background-color: #222222;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        height: 15vh;
+        padding: $second_indent;
+    }
+    
+    &__demo {
+        z-index:-2;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        width: 100%;
+        height: 55vh;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        background-color: #666666;
+        object-fit: cover;
+        &--iframe {
+            border: none;
+            overflow: hidden;
+        }
+    }
+
+    &__demo__cover {
+        z-index:0;
+        position: absolute;
+        top: 0;
+        left:0;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        opacity: 0.8;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height:55vh;
+        background-color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    &__demo__cover--off {
+        display:none;
+    }
+}
+
+.friends {
+    border: $standard_border;
+    border-radius: 1rem;;
+    height:20vh;
+    width: 50%;
+    padding: $first_indent;
+
+    &__container {
+        display: flex;
+        gap: $first_indent;
+        transform: scale(0.9);
+    }
+}
+
+.pills {
+    &__container {
+        display: flex;
+        align-items: stretch;
+        padding: $first_indent;
+        gap: $first_indent; 
+        width:50%;
+    }
+
+    display:flex;
+    gap: 1rem;
+    flex-wrap:wrap;
+
+    &__image {
+        border-radius: 100%;
+        width: calc(12px + 4ch + 1.2rem + 3rem);
+        border: 4px solid #AAA;
+    }
+}
+
+a {
+    color: inherit;
+}
+
+.pill {
+    color: #AAAAAA;
+    display: flex;
+    align-items: center;
+    padding: 1ch;
+    gap: 1ch;
+    background-color: #222222;
+    border-radius: 1rem;
+    border: 3px solid #777777;
+
+    &__symbol {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__children {
+        display:flex;
+        gap: 1ch;
+        font-weight: bold;
+    }
+}
