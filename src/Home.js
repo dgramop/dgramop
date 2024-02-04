@@ -3,6 +3,9 @@ import {Tween, Timeline, ScrollTrigger} from 'react-gsap';
 import {GitHub, Key, Language, ListSharp, NearMe, Person, RestaurantMenu, SwipeDown, Web, WorkSharp} from "@mui/icons-material";
 import {useState} from "react";
 
+const devmode = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+const markers=devmode;
+
 function WorkItem({title="TODO", type="TODO", subtext="TODO", children="TODO", interactive=false, ...props}) {
     const [coverDemo, setCoverDemo] = useState(interactive);
     return (
@@ -54,7 +57,7 @@ function Work() {
                   <ScrollTrigger 
                       trigger={".work"}
                       anticipatePin={1}
-                      pin={"#pinContainer"} start="0px start" end="50% start" scrub={0.5} markers 
+                      pin={"#pinContainer"} start="0px start" end="50% start" scrub={0.5} markers={markers}
                   >
                     <Timeline
                       wrapper={<div id="pinContainer" />}
@@ -127,7 +130,7 @@ export default function Home(props) {
                 trigger=".hero"
                 start="0% start"
                 end="100% start"
-                markers
+                markers={markers}
                 scrub={0.5}
             >
                 <Tween from={{opacity: 1}} to={{opacity:0.5}}>
@@ -162,7 +165,7 @@ export default function Home(props) {
             <ScrollTrigger
                 trigger={".hero"}
                 start={"0 start"}
-                markers
+                markers={markers}
             >
                 <Tween from={{opacity:0.7}} to={{opacity:1}} duration={0.5}>
                     <div className="pills__container">
@@ -190,7 +193,7 @@ export default function Home(props) {
                 </Tween>
             </ScrollTrigger>
             <Work />
-            <div className="work__spacer"/>
+            {(devmode) && <div className="work__spacer"/>}
             <div className="friends__container">
                 <div className="friends">
                     <div className="card_title">certifications</div>
