@@ -1,6 +1,6 @@
 import "./Home.scss"
 import {Tween, Timeline, ScrollTrigger} from 'react-gsap';
-import {GitHub, Key, Language, ListSharp, NearMe, Person, RestaurantMenu, SwipeDown, Web, WorkSharp} from "@mui/icons-material";
+import {Email, GitHub, Instagram, Key, Language, ListSharp, NearMe, Person, Phone, RestaurantMenu, SwipeDown, Web, WorkSharp} from "@mui/icons-material";
 import {useState} from "react";
 
 const devmode = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
@@ -71,7 +71,16 @@ function Work() {
                                 to={{x:0}}
                             >
                               <div className="workitem__container">
-                                  <WorkItem title="Homology of Polyforms" type="University Mathematics Research" subtext={"In support of biochemists engaged in cancer research, I wrote and optimized algorithms that sample polyforms from the same distribution as a large 3d lattice, without populating the lattice, substantially increasing the complexity an number polyforms our team sampled."} interactive >
+                                  <WorkItem 
+                                      title="Homology of Polyforms"
+                                      type="University Mathematics Research"
+                                      subtext={<>
+                                      In support of biochemists engaged in cancer research,
+                                      I wrote and optimized <a rel="noreferrer" target="_blank" href="https://github.com/dgramop/faster_polyforms">algorithms</a> that sample polyforms from the same distribution as an infinite 3d lattice.
+                                      The algorithms sampled without populating any lattice, substantially increasing the complexity and number polyforms our team sampled.
+                                      </>}
+                                      interactive 
+                                  >
                                       <iframe className="workitem__demo workitem__demo--iframe" title={"Live WASM Demo of Polyform Shuffler"} src="https://dgramop.xyz/blocks.html"/>
                                   </WorkItem>
                               </div>
@@ -79,43 +88,88 @@ function Work() {
 
                             <TweenElement>
                               <div className="workitem__container">
-                                  <WorkItem interactive title={"passCS"} type={"Exited Startup"} subtext={"To help bridge the gap between university and TAs angry at unpaid wages"} >
+                                  <WorkItem 
+                                      interactive
+                                      title="passCS"
+                                      type="Exited Startup"
+                                      subtext={<>
+                                      I founded <a target="_blank" rel="noreferrer" href="https://passcs.io">passCS</a> by hiring teaching assistants disgruntled by unpaid wages
+                                      to help left-behind students needing one-on-one attention pass.
+                                      The premise: Pass or your money back.
+                                      I grew passCS to just under 20 employees and 3 subject areas,
+                                      and sold it when I graduated.
+                                      passCS continues to operate at GMU
+                                      </>}
+                                  >
                                       <iframe className="workitem__demo workitem__demo--iframe" title={"passCS Website"} src="https://passcs.io"/>
                                   </WorkItem>
                               </div>
                           </TweenElement>
                           <TweenElement >
                               <div className="workitem__container">
-                                  <WorkItem title="Solvespace" type="Open Source Contributions" subtext={"TODO"} interactive >
+                                  <WorkItem 
+                                      title="Solvespace"
+                                      type="Open Source Contributions"
+                                      subtext={<>
+                                          CAD modelers redesign large portions of their parts when dimensions change. The solution is parameterization that solves for underlying dependent geometry.
+
+                                          The next major iteration of CAD software will be as parametric as OpenSCAD and as convenient as point-and-click CAD. <a href="https://github.com/solvespace/solvespace" target="_blank" rel="noreferrer">Solvespace</a> is on its way to being just that
+                                      </>}
+                                      interactive
+                                  >
                                       <iframe className="workitem__demo workitem__demo--iframe" title={"Live emscripten Demo solvespace"} src="https://cad.apps.dgramop.xyz"/>
                                   </WorkItem>
                               </div>
                           </TweenElement>
                           <TweenElement >
                              <div className="workitem__container">
-                                 <WorkItem title="Fixed-Wing sUAS" type="Hobby Project" subtext={"TODO"} interactive >
+                                 <WorkItem title="Fixed-Wing sUAS" type="In-Progress Hobby Project" subtext="
+                                     Some friends and I decided to have a competition to build a fixed-wing sUAS. My desire to join this competition was to help create semi-disposable sUAS systems for application in recon and electromagnetic warfare.
+                                     " interactive >
                                      <iframe className="workitem__demo workitem__demo--iframe" title={"3d viewer for CAD model"} src="https://dgramop.xyz/assembly.html"/>
                                  </WorkItem>
                              </div>
                           </TweenElement>
 
-                          <TweenElement
-                          >
+                          <TweenElement >
                              <div className="workitem__container">
-                                 <WorkItem title="PowerContest" type="Hackathon Project" subtext={"TODO"} interactive >
+                                 <WorkItem title="PowerContest" type="Winning Hackathon Project" subtext={<>
+                                     <a href="powercontest.org">Power Contest</a> is an online leaderboard with real-time power-usage data for your town, city and community. Competition between communities encourages a culture of sustainable consumption.
+                                     In 2020, PowerContest won UVA's HooHacks' Sustainability Track. In 2021 it became a semifinalist in The Clinton Global Initiative University/Verizon's Climate Justice Track.
+                                     </>} interactive >
                                      <iframe className="workitem__demo workitem__demo--iframe" title={"powercontest description website"} src="https://powercontest.org"/>
                                  </WorkItem>
                              </div>
                           </TweenElement>
 
-                          <TweenElement
-                          >
+                          <TweenElement >
                              <div className="workitem__container">
-                                 <WorkItem title="null.black" type="Failed Startup" subtext={"TODO"} interactive >
+                                 <WorkItem title="null.black" type="Failed Startup" subtext="null.black was a VPN company I started in high school with friends. I had developed a custom protocol that evaded every censorship firewall we threw it at, even those that used deep-packet inspection to detect VPN traffic.  There's a lot to talk about for this one, so you're best off just asking me about it." interactive >
                                      <iframe className="workitem__demo workitem__demo--iframe" title={"null.black web app"} src="https://null.black"/>
                                  </WorkItem>
                              </div>
                           </TweenElement>
+
+                          <TweenElement >
+                             <div className="workitem__container">
+                                 <WorkItem title="PNI Sensor" type="Employment" subtext={<> I work as an R&D Software Engineer at <a href="https://pnicorp.com" rel="noreferrer" target="_blank">PNI Sensor</a>. I'm engaged in developing novel algorithms for APNT (Assured Positioning, Navigation, and Timing). APNT, in other words, is positioning without GPS. In this video, the same one on my front page, I can been sucesfully testing an algorithm I developed on a hunch. </>}>
+                                    <video className="workitem__demo" playsInline autoPlay muted loop poster="bgimg.png" >
+                                      <source src="/bgvideo.mp4" type="video/mp4"/>
+                                    </video>
+                                 </WorkItem>
+                             </div>
+                          </TweenElement>
+
+                          <TweenElement >
+                             <div className="workitem__container">
+                                 <WorkItem title="Impact Aware" type="Winning Hackathon Project" subtext={<> <a target="_blank" rel="noreferrer" href="https://devpost.com/software/impact-aware">Impact aware</a>'s fault-tolerant mesh network of sensors detects the location and intensity of bomb detonation impacts in urban areas to help first responders prioritize after an air raid. We chose to develop this a few nights after the war in Ukraine started. It won multiple prizes, including first place at TechConnect Hacks D.C. at George Mason University. The attention earned our team invitationals to Microsoft Garage's ideathon and ideation workshop and a grant-track spot in our University/SBDC partnership Innovation Commercialization Assistance Program</>}>
+                                    <img className="workitem__demo" src="impact_aware.jpg" />
+                                 </WorkItem>
+                             </div>
+                          </TweenElement>
+                            {/*
+                            TODO: more hackathon projects, ideally those with videos
+                            */}
                         </div>
                     </Tween>
                     </Timeline>
@@ -188,6 +242,9 @@ export default function Home(props) {
                             <Pill symbol={<WorkSharp />}>
                                 <a href="https://www.linkedin.com/in/dgramop"> linkedin </a> 
                             </Pill>
+                            <Pill symbol={<Instagram />}>
+                                <a href="https://www.instagram.com/dgramop/"> instagram </a> 
+                            </Pill>
                         </div>
                     </div>
                 </Tween>
@@ -199,7 +256,7 @@ export default function Home(props) {
                     <div className="card_title">certifications</div>
                     <ul>
                         <li><a href="https://ipv6.he.net/certification/create_badge.php?pass_name=dgramop&badge=3">Hurricane Electric IPv6 Sage Certified</a></li>
-                        <li>Part 107 Drone Pilot</li>
+                        <li>Part 107 Drone Pilot (WIP Feb 12)</li>
                     </ul>
                     <div className="card_title">skills & interests</div>
                     <ul>
@@ -209,6 +266,24 @@ export default function Home(props) {
                         <li>Electronics</li>
                     </ul>
                 </div>
+                {/*<div className="friends">
+                    <div className="card_title">Oakton High School</div>
+                    <ul>
+                        <li>Advanced Studies Diploma</li>
+                        <li>Computer Science Dep.t Award</li>
+                        <li>AP Scholar with Distinction</li>
+                        <li>Board of Education Excellence in Civics Education</li>
+                        <li>Scholastic Excellence: Advanced Mathematics and Technology</li>
+                        <li>Governor of Virginia Academic Excellence. </li>
+                    </ul>
+                </div>*/}
+
+                <div className="friends">
+                    <div className="card_title">Contact</div><br/>
+                    <Pill symbol={<Phone/>}> 571-524-3033</Pill><br/>
+                    <Pill symbol={<Email/>}> dgramopadhye@gmail.com</Pill>
+                </div>
+
                 <div className="friends">
                     <div className="card_title">George Mason University Winter '23</div>
                     <ul>
@@ -220,17 +295,7 @@ export default function Home(props) {
                         <li>Graduted a semester early w. several masters courses completed</li>
                     </ul>
                 </div>
-                <div className="friends">
-                    <div className="card_title">Oakton High School</div>
-                    <ul>
-                        <li>Advanced Studies Diploma</li>
-                        <li>Computer Science Dep.t Award</li>
-                        <li>AP Scholar with Distinction</li>
-                        <li>Board of Education Excellence in Civics Education</li>
-                        <li>Scholastic Excellence: Advanced Mathematics and Technology</li>
-                        <li>Governor of Virginia Academic Excellence. </li>
-                    </ul>
-                </div>
+
 
             </div>
             <div className="work__spacer"/>
