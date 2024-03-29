@@ -153,8 +153,8 @@ function Work() {
                           <TweenElement >
                              <div className="workitem__container">
                                  <WorkItem title="PNI Sensor" type="Employment" subtext={<> I work as an R&D Software Engineer at <a href="https://pnicorp.com" rel="noreferrer" target="_blank">PNI Sensor</a>. I'm engaged in developing novel algorithms for APNT (Assured Positioning, Navigation, and Timing). APNT, in other words, is positioning without GPS. In this video, the same one on my front page, I can been sucesfully testing an algorithm I developed on a hunch. </>}>
-                                    <video className="workitem__demo" playsInline autoPlay muted loop poster="bgimg.png" >
-                                      <source src="/bgvideo.mp4" type="video/mp4"/>
+                                    <video className="workitem__demo" playsInline autoPlay muted loop poster="/bgimg.webp" >
+                                      <source src="/bgvideo.webm" type="video/webm"/>
                                     </video>
                                  </WorkItem>
                              </div>
@@ -189,9 +189,8 @@ export default function Home(props) {
             >
                 <Tween from={{opacity: 1}} to={{opacity:0.5}}>
                     <div className="vid_container">
-                        <video playsInline autoPlay muted loop poster="bgimg.png" id="bgvid">
-                        {/*<source src="polina.webm" type="video/webm"/>*/}
-                          <source src="/bgvideo.mp4" type="video/mp4"/>
+                        <video playsInline autoPlay muted loop poster="bgimg.webp" id="bgvid">
+                          <source src="/bgvideo.webm" type="video/webm"/>
                         </video>
                     </div>
                     <div className="hero">
