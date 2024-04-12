@@ -15,9 +15,7 @@
     "react-dom": "^18.2.0",
     "react-gsap": "^3.2.1",
     "react-scripts": "5.0.1",
-    "react-scrollmagic": "^2.3.0",
     "sass": "^1.70.0",
-    "scrollmagic": "^2.0.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

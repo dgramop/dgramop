@@ -1,7 +1,7 @@
 import "./Home.scss"
 import {Tween, Timeline, ScrollTrigger} from 'react-gsap';
 import {Email, GitHub, Instagram, Key, Language, ListSharp, NearMe, Person, Phone, RestaurantMenu, SwipeDown, Web, WorkSharp} from "@mui/icons-material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const devmode = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 const markers=devmode;
@@ -56,7 +56,7 @@ function Work() {
     return(
                   <ScrollTrigger 
                       trigger={".work"}
-                      anticipatePin={1}
+                      anticipatePin={0}
                       pin={"#pinContainer"} start="0px start" end="50% start" scrub={0.5} markers={markers}
                   >
                     <Timeline
@@ -178,6 +178,23 @@ function Work() {
 }
 
 export default function Home(props) {
+    useEffect(() => {
+        let sm = 0
+        let t = setInterval(() => {
+            console.log(window.scrollY)
+            if(window.scrollY == 0 && sm == 0) {
+                sm++
+            }
+            if(window.scrollY > 0 && sm == 1) {
+                sm++
+            }
+            if(window.scrollY == 0 && sm == 2) {
+                clearInterval(t)
+            }
+            window.scrollTo({left:0, top: 0})
+        }, 100);
+        setTimeout(() => clearInterval(t), 1000);
+    })
     return (
         <>
             <ScrollTrigger
