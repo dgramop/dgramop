@@ -250,7 +250,7 @@ export default function Home(props) {
                                 <a href="https://keybase.io/dgramop"> keybase </a>
                             </Pill>
                             <Pill symbol={<Web />}> 
-                                <a href="https://devpost.com/BrainyBrian"> devpost </a>
+                                <a href="https://devpost.com/dgramop"> devpost </a>
                             </Pill>
                             {/*<Pill symbol={<ListSharp />}>
                                 <a href="/resume.pdf"> resume </a>
