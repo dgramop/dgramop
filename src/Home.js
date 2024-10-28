@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 const devmode = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 const markers=devmode;
 
-function WorkItem({title="TODO", type="TODO", subtext="TODO", children="TODO", interactive=false, ...props}) {
+function WorkItem({title="TODO", type="TODO", subtext="TODO", children=<></>, interactive=false, lazyFrame, ...props}) {
     const [coverDemo, setCoverDemo] = useState(interactive);
     return (
           <section className="workitem">
@@ -25,7 +25,9 @@ function WorkItem({title="TODO", type="TODO", subtext="TODO", children="TODO", i
               </div>
               <div className={"workitem__demo__cover "+(!coverDemo ? "workitem__demo__cover--off" : "")} onClick={() => setCoverDemo(false)}>
                   Click to interact with {title}
-              </div> {children} <div className="workitem__subtext"> 
+              </div> 
+                  {lazyFrame && <iframe className="workitem__demo workitem__demo--iframe" {...lazyFrame}/>}
+                  {children} <div className="workitem__subtext"> 
                   {subtext}
               </div>
           </section>
@@ -80,11 +82,21 @@ function Work() {
                                       The algorithms sampled without populating any lattice, substantially increasing the complexity and number polyforms our team sampled.
                                       </>}
                                       interactive 
-                                  >
-                                      <iframe className="workitem__demo workitem__demo--iframe" title={"Live WASM Demo of Polyform Shuffler"} src="https://dgramop.xyz/blocks.html"/>
-                                  </WorkItem>
+                                      lazyFrame={{title: "Live WASM Demo of Polyform Shuffler", src: "/polyforms/index.html"}}
+                                  />
                               </div>
                             </Tween>
+
+                          <TweenElement >
+                             <div className="workitem__container">
+                                 <WorkItem title="Foxhunter" type="Startup" subtext={<> <a href="https://foxhunter.ai" rel="noreferrer" target="_blank">Foxhunter</a> explores a new approach towards Low-Probability of Intercept/Low-Probability of Detection (LPI/LPD) waveforms: Generative AI</>}>
+                                    <video className="workitem__demo" loop controls >
+                                        <source src="/firstvid.mp4" type="video/mp4"/>
+                                        <source src="/firstvid.webm" type="video/webm"/>
+                                    </video>
+                                 </WorkItem>
+                             </div>
+                          </TweenElement>
 
                             <TweenElement>
                               <div className="workitem__container">
@@ -106,43 +118,6 @@ function Work() {
                               </div>
                           </TweenElement>
                           <TweenElement >
-                              <div className="workitem__container">
-                                  <WorkItem 
-                                      title="Solvespace"
-                                      type="Open Source Contributions"
-                                      subtext={<>
-                                          CAD modelers redesign large portions of their parts when dimensions change. The solution is parameterization that solves for underlying dependent geometry.
-
-                                          The next major iteration of CAD software will be as parametric as OpenSCAD and as convenient as point-and-click CAD. <a href="https://github.com/solvespace/solvespace" target="_blank" rel="noreferrer">Solvespace</a> is on its way to being just that
-                                      </>}
-                                      interactive
-                                  >
-                                      <iframe className="workitem__demo workitem__demo--iframe" title={"Live emscripten Demo solvespace"} src="https://cad.apps.dgramop.xyz"/>
-                                  </WorkItem>
-                              </div>
-                          </TweenElement>
-                          <TweenElement >
-                             <div className="workitem__container">
-                                 <WorkItem title="Fixed-Wing sUAS" type="In-Progress Hobby Project" subtext="
-                                     Some friends and I decided to have a competition to build a fixed-wing sUAS. My desire to join this competition was to help create semi-disposable sUAS systems for application in recon and electromagnetic warfare.
-                                     " interactive >
-                                     <iframe className="workitem__demo workitem__demo--iframe" title={"3d viewer for CAD model"} src="https://dgramop.xyz/assembly.html"/>
-                                 </WorkItem>
-                             </div>
-                          </TweenElement>
-
-                          <TweenElement >
-                             <div className="workitem__container">
-                                 <WorkItem title="PowerContest" type="Winning Hackathon Project" subtext={<>
-                                     <a href="powercontest.org">Power Contest</a> is an online leaderboard with real-time power-usage data for your town, city and community. Competition between communities encourages a culture of sustainable consumption.
-                                     In 2020, PowerContest won UVA's HooHacks' Sustainability Track. In 2021 it became a semifinalist in The Clinton Global Initiative University/Verizon's Climate Justice Track.
-                                     </>} interactive >
-                                     <iframe className="workitem__demo workitem__demo--iframe" title={"powercontest description website"} src="https://powercontest.org"/>
-                                 </WorkItem>
-                             </div>
-                          </TweenElement>
-
-                          <TweenElement >
                              <div className="workitem__container">
                                  <WorkItem title="null.black" type="Failed Startup" subtext="null.black was a VPN company I started in high school with friends. I had developed a custom protocol that evaded every censorship firewall we threw it at, even those that used deep-packet inspection to detect VPN traffic.  There's a lot to talk about for this one, so you're best off just asking me about it." interactive >
                                      <iframe className="workitem__demo workitem__demo--iframe" title={"null.black web app"} src="https://null.black"/>
@@ -160,6 +135,22 @@ function Work() {
                              </div>
                           </TweenElement>
 
+                          <TweenElement >
+                              <div className="workitem__container">
+                                  <WorkItem 
+                                      title="Solvespace"
+                                      type="Open Source Contributions"
+                                      subtext={<>
+                                          CAD modelers redesign large portions of their parts when dimensions change. The solution is parameterization that solves for underlying dependent geometry.
+
+                                          The next major iteration of CAD software will be as parametric as OpenSCAD and as convenient as point-and-click CAD. <a href="https://github.com/solvespace/solvespace" target="_blank" rel="noreferrer">Solvespace</a> is on its way to being just that
+                                      </>}
+                                      interactive
+                                  >
+                                      <iframe className="workitem__demo workitem__demo--iframe" title={"Live emscripten Demo solvespace"} src="https://cad.apps.dgramop.xyz"/>
+                                  </WorkItem>
+                              </div>
+                          </TweenElement>
                           <TweenElement >
                              <div className="workitem__container">
                                  <WorkItem title="Impact Aware" type="Winning Hackathon Project" subtext={<> <a target="_blank" rel="noreferrer" href="https://devpost.com/software/impact-aware">Impact aware</a>'s fault-tolerant mesh network of sensors detects the location and intensity of bomb detonation impacts in urban areas to help first responders prioritize after an air raid. We chose to develop this a few nights after the war in Ukraine started. It won multiple prizes, including first place at TechConnect Hacks D.C. at George Mason University. The attention earned our team invitationals to Microsoft Garage's ideathon and ideation workshop and a grant-track spot in our University/SBDC partnership Innovation Commercialization Assistance Program</>}>
