@@ -216,7 +216,7 @@ export default function Home(props) {
                                 Dhruv Gramopadhye. 
                             </span>
                             <span className="hero__heading__subtext">
-                                Engineer, for the world
+                                Engineer
                             </span>
                         </div>
                         <div className="hero__creed">
@@ -226,7 +226,7 @@ export default function Home(props) {
                             <div className="hero__creed__text">
                                 I am an engineer; I reduce theory to practice.<br/>
                                 I fix problems instead of ignoring or complaining about them. <br/>
-                                I take responsibility for my product and those who use it.<br/>
+                                I take responsibility for my product and the well-being of those who rely on it.<br/>
                             </div>
                         </div>
                     </div>
@@ -282,17 +282,6 @@ export default function Home(props) {
                         <li>Electronics</li>
                     </ul>
                 </div>
-                {/*<div className="friends">
-                    <div className="card_title">Oakton High School</div>
-                    <ul>
-                        <li>Advanced Studies Diploma</li>
-                        <li>Computer Science Dep.t Award</li>
-                        <li>AP Scholar with Distinction</li>
-                        <li>Board of Education Excellence in Civics Education</li>
-                        <li>Scholastic Excellence: Advanced Mathematics and Technology</li>
-                        <li>Governor of Virginia Academic Excellence. </li>
-                    </ul>
-                </div>*/}
 
                 <div className="friends">
                     <div className="card_title">Contact</div><br/>
