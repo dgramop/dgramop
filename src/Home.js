@@ -34,7 +34,11 @@ function WorkItem({title="TODO", type="TODO", subtext="TODO", children="TODO", i
 
 function TweenElement({children, ...props}) {
     return (
-          {children}
+                      <Tween
+                          from={{ x: '120%', scale: 0.85, rotationZ: 20}}
+                          to={{ x: '0%', scale: 1,  rotationZ:0}} >
+                          {children}
+                      </Tween>
     )
 }
 
