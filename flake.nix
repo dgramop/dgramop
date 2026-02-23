@@ -1,8 +1,8 @@
 {
-  description = "A very basic flake";
+  description = "dgramop frontend";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -10,32 +10,39 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        node-modules = pkgs.mkYarnPackage {
-          name = "node-modules";
-          src = ./.;
+
+        yarnOfflineCache = pkgs.fetchYarnDeps {
+          yarnLock = "${self}/yarn.lock";
+          hash = "sha256-thZAK0svzEvelcXFHXfu8sMIBSAQ++c0ObXU3Gr6K+4=";
         };
-      in
-      {
-        packages.node-modules = node-modules;
-        packages.frontend = pkgs.stdenv.mkDerivation {
-          name = "frontend";
-          src = ./.;
-          buildInputs = [pkgs.yarn node-modules];
-          buildPhase = ''
-            ln -s ${node-modules}/libexec/dgramop/node_modules node_modules
-            ${pkgs.yarn} build";
-          '';
+
+        frontend = pkgs.stdenv.mkDerivation {
+          name = "dgramop_frontend";
+          src = self;
+          inherit yarnOfflineCache;
+          
+          dontStrip = true;
+          buildInputs = [pkgs.yarnConfigHook pkgs.yarnBuildHook pkgs.yarnInstallHook];
           installPhase =  ''
-            mkdir $out
-            mv dist $out/lib
+          mkdir $out
+          mv build $out/www
           '';
+
         };
-        devShells.default = pkgs.mkShell {
-          buildInputs = [
-            pkgs.nodejs
-            pkgs.yarn
-          ];
-        };
-      }
+      in 
+        {
+          packages = {
+            yco = yarnOfflineCache;
+            default = frontend;
+          };
+          devShells = {
+            default = pkgs.mkShell {
+              buildInputs = with pkgs; [
+                yarn
+                nodejs
+              ];
+            };
+          };
+        }
     );
 }
