@@ -10,38 +10,18 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-
-        yarnOfflineCache = pkgs.fetchYarnDeps {
-          yarnLock = "${self}/yarn.lock";
-          hash = "sha256-thZAK0svzEvelcXFHXfu8sMIBSAQ++c0ObXU3Gr6K+4=";
-        };
-
-        frontend = pkgs.stdenv.mkDerivation {
-          name = "dgramop_frontend";
-          src = self;
-          inherit yarnOfflineCache;
-          
-          dontStrip = true;
-          buildInputs = [pkgs.nodejs pkgs.yarnConfigHook pkgs.yarnBuildHook pkgs.yarnInstallHook];
-          installPhase =  ''
-          mkdir $out
-          mv build $out/www
+      in
+        {
+          packages.default = pkgs.runCommand "dgramop_frontend" {} ''
+            mkdir -p $out/www
+            cp -r ${self}/public/* $out/www/
           '';
 
-        };
-      in 
-        {
-          packages = {
-            yco = yarnOfflineCache;
-            default = frontend;
-          };
-          devShells = {
-            default = pkgs.mkShell {
-              buildInputs = with pkgs; [
-                yarn
-                nodejs
-              ];
-            };
+          devShells.default = pkgs.mkShell {
+            buildInputs = [ pkgs.darkhttpd ];
+            shellHook = ''
+              alias serve="darkhttpd public --port 8000"
+            '';
           };
         }
     );
