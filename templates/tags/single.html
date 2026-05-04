@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ term.name }} — dGRAMOP{% endblock %}
+
+{% block bodyattr %} class="blog"{% endblock %}
+
+{% block content %}
+<div class="blog-layout">
+  {% set current_path = "" %}
+  {% include "partials/sidebar.html" %}
+
+  <main class="blog-main">
+    <div class="blog-list">
+      <div class="prompt">
+        <span class="prompt__user">dgramop@xyz</span>
+        <span class="prompt__path"> :~/posts$ </span>
+        <span>grep -l "{{ term.name }}" *.md</span>
+      </div>
+
+      <div class="blog-list__entries" style="margin-top: 24px;">
+        {% for page in term.pages %}
+        <a href="{{ page.path }}" class="blog-list__entry">
+          <div class="blog-list__entry__title">{{ page.title | lower }}</div>
+          <div class="blog-list__entry__meta">
+            <span>{{ page.date | date(format="%Y-%m-%d") }}</span>
+          </div>
+          {% if page.description %}
+          <div class="blog-list__entry__desc">&gt; {{ page.description }}</div>
+          {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

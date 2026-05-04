@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — dGRAMOP{% endblock %}
+
+{% block bodyattr %} class="blog"{% endblock %}
+
+{% block content %}
+<div class="blog-layout">
+  {% set current_path = page.path %}
+  {% include "partials/sidebar.html" %}
+
+  <main class="blog-main">
+    <div class="blog-post">
+      {# prompt line #}
+      <div class="prompt">
+        <span class="prompt__user">dgramop@xyz</span>
+        <span class="prompt__path"> :~/posts$ </span>
+        <span>cat {{ page.date | date(format="%Y-%m-%d") }}-{{ page.slug }}.md</span>
+      </div>
+
+      {# title #}
+      <h1 class="post-title"># {{ page.title }}</h1>
+
+      {# subtitle #}
+      {% if page.description %}
+      <p class="post-subtitle">&gt; {{ page.description }}</p>
+      {% endif %}
+
+      {# chips #}
+      <div class="chips">
+        <span class="chip">{{ page.date | date(format="%Y-%m-%d") }}</span>
+        {% if page.extra.series is defined %}
+        <span class="chip">{{ page.extra.series }}</span>
+        {% endif %}
+        {% if page.taxonomies.tags is defined %}
+        {% for tag in page.taxonomies.tags %}
+        <span class="chip">{{ tag }}</span>
+        {% endfor %}
+        {% endif %}
+        {% if page.extra.status is defined %}
+        <span class="chip chip--accent">{{ page.extra.status }}</span>
+        {% endif %}
+      </div>
+
+      {# body #}
+      <div class="post-body">
+        {{ page.content | safe }}
+      </div>
+
+      {# footer nav #}
+      <div class="post-nav">
+        <div><span class="prompt__user">$</span> ls ../</div>
+        {% if page.earlier %}
+        <div class="post-nav__link">
+          <a href="{{ page.earlier.path }}">../{{ page.earlier.date | date(format="%Y-%m-%d") }}-{{ page.earlier.slug }}.md</a>
+          <span class="post-nav__hint">&larr; prev</span>
+        </div>
+        {% endif %}
+        {% if page.later %}
+        <div class="post-nav__link">
+          <a href="{{ page.later.path }}">../{{ page.later.date | date(format="%Y-%m-%d") }}-{{ page.later.slug }}.md</a>
+          <span class="post-nav__hint">next &rarr;</span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

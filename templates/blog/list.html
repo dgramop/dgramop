@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}writing — dGRAMOP{% endblock %}
+
+{% block bodyattr %} class="blog"{% endblock %}
+
+{% block content %}
+<div class="blog-layout">
+  {% set current_path = "" %}
+  {% include "partials/sidebar.html" %}
+
+  <main class="blog-main">
+    <div class="blog-list">
+      <div class="prompt">
+        <span class="prompt__user">dgramop@xyz</span>
+        <span class="prompt__path"> :~/posts$ </span>
+        <span>ls -la</span>
+      </div>
+
+      <div class="blog-list__entries">
+        {% set blog = get_section(path="blog/_index.md") %}
+        {% for post in blog.pages %}
+        <a href="{{ post.path }}" class="blog-list__entry">
+          <div class="blog-list__entry__title">{{ post.title | lower }}</div>
+          <div class="blog-list__entry__meta">
+            <span>{{ post.date | date(format="%Y-%m-%d") }}</span>
+            {% if post.taxonomies.tags is defined %}
+            {% for tag in post.taxonomies.tags %}
+            <span class="chip chip--sm">{{ tag }}</span>
+            {% endfor %}
+            {% endif %}
+            {% if post.extra.status is defined %}
+            <span class="chip chip--sm chip--accent">{{ post.extra.status }}</span>
+            {% endif %}
+          </div>
+          {% if post.description %}
+          <div class="blog-list__entry__desc">&gt; {{ post.description }}</div>
+          {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

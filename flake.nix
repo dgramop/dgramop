@@ -12,15 +12,21 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
         {
-          packages.default = pkgs.runCommand "dgramop_frontend" {} ''
-            mkdir -p $out/www
-            cp -r ${self}/public/* $out/www/
-          '';
+          packages.default = pkgs.stdenv.mkDerivation {
+            name = "dgramop_frontend";
+            src = self;
+            nativeBuildInputs = [ pkgs.zola ];
+            buildPhase = "zola build";
+            installPhase = ''
+              mkdir -p $out
+              mv public $out/www
+            '';
+          };
 
           devShells.default = pkgs.mkShell {
-            buildInputs = [ pkgs.darkhttpd ];
+            buildInputs = [ pkgs.zola ];
             shellHook = ''
-              alias serve="darkhttpd public --port 8000"
+              alias serve="zola serve"
             '';
           };
         }

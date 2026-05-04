@@ -1,0 +1,23 @@
+{% set blog = get_section(path="blog/_index.md") %}
+<aside class="sidebar">
+  <div class="sidebar__title"><a href="/">dGRAMOP</a></div>
+  <div class="sidebar__sub">d&#275;&middot;gram&middot;op / writing</div>
+
+  <div class="sidebar__label">POSTS</div>
+  <ul class="sidebar__list">
+    {% for post in blog.pages %}
+    {% set is_active = current_path is defined and current_path == post.path %}
+    <li class="sidebar__item{% if is_active %} sidebar__item--active{% endif %}">
+      <a href="{{ post.path }}">
+        <div class="sidebar__item__title">{{ post.title | lower }}</div>
+        <div class="sidebar__item__meta">
+          <span>{{ post.date | date(format="%Y-%m-%d") }}</span>
+          {% if post.taxonomies.tags is defined and post.taxonomies.tags | length > 0 %}
+          <span>&middot; {{ post.taxonomies.tags[0] }}</span>
+          {% endif %}
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</aside>

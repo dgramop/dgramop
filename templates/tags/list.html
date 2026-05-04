@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}tags — dGRAMOP{% endblock %}
+
+{% block bodyattr %} class="blog"{% endblock %}
+
+{% block content %}
+<div class="blog-layout">
+  {% set current_path = "" %}
+  {% include "partials/sidebar.html" %}
+
+  <main class="blog-main">
+    <div class="blog-list">
+      <div class="prompt">
+        <span class="prompt__user">dgramop@xyz</span>
+        <span class="prompt__path"> :~/posts$ </span>
+        <span>ls tags/</span>
+      </div>
+
+      <div class="blog-list__entries" style="margin-top: 24px;">
+        {% for term in terms %}
+        <a href="{{ term.path }}" class="blog-list__entry">
+          <div class="blog-list__entry__title">{{ term.name }}</div>
+          <div class="blog-list__entry__meta">{{ term.pages | length }} post{{ term.pages | length | pluralize }}</div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
