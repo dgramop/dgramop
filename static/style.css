@@ -247,20 +247,12 @@ body.blog a:hover {
   margin: 2rem 0 0.75rem;
 }
 
-.post-body h2::before {
-  content: "## ";
-}
-
 .post-body h3 {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 1rem;
   font-weight: 400;
   color: #888;
   margin: 1.5rem 0 0.5rem;
-}
-
-.post-body h3::before {
-  content: "### ";
 }
 
 .post-body p {
