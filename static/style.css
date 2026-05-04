@@ -58,7 +58,7 @@ body.blog {
   margin: 0;
   padding: 0;
   background: #0a0a0a;
-  color: #e8e8e8;
+  color: #b0b0b0;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 16px;
 }
@@ -95,7 +95,7 @@ body.blog a:hover {
 }
 
 .sidebar__title {
-  color: #e8e8e8;
+  color: #b0b0b0;
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 0.25rem;
@@ -194,7 +194,7 @@ body.blog a:hover {
 .post-title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #e8e8e8;
+  color: #b0b0b0;
   margin: 0 0 0.4rem;
 }
 
@@ -236,7 +236,7 @@ body.blog a:hover {
 .post-body {
   font-size: 1rem;
   line-height: 1.7;
-  color: #e8e8e8;
+  color: #b0b0b0;
 }
 
 .post-body h2 {
