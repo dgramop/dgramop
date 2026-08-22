@@ -1,5 +1,15 @@
-Hi! I'm Dhruv.
+hi! i'm dhruv.
 
-I'm interested in (software-defined) radio, sensors + embedded systems, Rust, additive manufacturing, and geometry. I have emerging interests in CAD/CAM software, as a user and as a developer. I have skills but  slightly fading interests in cybersecurity (web exploitation), networking, and web development.
+i'm interested in:
+- (software-defined) radio
+- sensors + actuators
+- systems + drivers
+- additive manufacturing
+- geometry & spatial computing
+
+old interests:
+- cybersecurity (web exploitation),
+- networking,
+- web dev
 
 based in SF
